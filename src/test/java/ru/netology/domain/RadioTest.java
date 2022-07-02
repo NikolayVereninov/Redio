@@ -140,9 +140,25 @@ public class RadioTest {
 
 
     }
+    
+    
+        @Test
+
+    public void shouldTheRadioStationSwitchFrom1To0() {
+        Radio radio = new Radio();
+        radio.setCurrentRadioStation(8);
+
+        radio.increaseRadioStation();
+
+
+        int expected = 9;
+        int actual = radio.getCurrentRadioStation();
+        assertEquals(expected, actual);
+
+    }
 
     @Test
-
+    
     public void shouldTheRadioStationSwitchFrom0To1() {
         Radio radio = new Radio();
         radio.setCurrentRadioStation(0);
