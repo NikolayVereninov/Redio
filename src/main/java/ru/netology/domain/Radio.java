@@ -1,26 +1,36 @@
 package ru.netology.domain;
 
 public class Radio {
-    private int currentRadioStation;
-    private int currentVolume;
+    private int id;
+    private int numberOfRadioStations = 10;
+    private int currentRadioStation = 5;
+    private int maxVolume = 100;
+    private int minVolume = 0;
+    private int currentVolume = 20;
+    private boolean on;
 
-    public void setCurrentRadioStation(int currentRadioStation) {
+    public Radio(int numberOfRadioStations) {
+        this.numberOfRadioStations = numberOfRadioStations;
+    }
 
-        if (currentRadioStation > 9) {
+    public Radio() {
+
+    }
+
+    public int setCurrentRadioStation(int currentRadioStation) {
+
+        if (currentRadioStation > (numberOfRadioStations - 1)) {
             currentRadioStation = 0;
         }
-
-        if (currentRadioStation < 0) {
-            currentRadioStation = 0;
-        }
-
         if (currentRadioStation > 0) {
             this.currentRadioStation = currentRadioStation;
         }
 
+
         this.currentRadioStation = currentRadioStation;
 
 
+        return currentRadioStation;
     }
 
     public int getCurrentRadioStation() {
@@ -30,10 +40,7 @@ public class Radio {
 
     public void setCurrentVolume(int currentVolume) {
 
-        if (currentVolume > 10) {
-            return;
-        }
-        if (currentVolume < 0) {
+        if (currentVolume > 100) {
             return;
         }
         this.currentVolume = currentVolume;
@@ -45,8 +52,11 @@ public class Radio {
 
 
     public void increaseVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < 100) {
             currentVolume = currentVolume + 1;
+        }
+        if (currentVolume == 100) {
+            currentVolume = currentVolume;
         }
 
     }
@@ -62,11 +72,17 @@ public class Radio {
 
     public void increaseRadioStation() {
 
-        if (currentRadioStation < 9) {
+
+        if (currentRadioStation < (numberOfRadioStations - 1)) {
             currentRadioStation = currentRadioStation + 1;
-        } else {
+
+        } else if (currentRadioStation == (numberOfRadioStations - 1)) {
             currentRadioStation = 0;
+            return;
         }
+
+
+        this.currentRadioStation = currentRadioStation;
 
     }
 
@@ -75,9 +91,8 @@ public class Radio {
             currentRadioStation = currentRadioStation - 1;
         }
         if (currentRadioStation == 0) {
-            currentRadioStation = 9;
+            currentRadioStation = numberOfRadioStations - 1;
         }
-
     }
 
 
